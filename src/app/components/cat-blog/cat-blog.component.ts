@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Cat } from 'src/app/models/cat-fact.model';
 import { CatService } from 'src/app/services/cat.service';
 
 @Component({
@@ -7,22 +8,11 @@ import { CatService } from 'src/app/services/cat.service';
   styleUrls: ['./cat-blog.component.scss'],
 })
 export class CatBlogComponent {
-  catFact: any;
-  catImageURL: any;
+  @Input() cat!: Cat;
+
 
   constructor(private catSv: CatService) {
-    this.getCatFact();
-    this.getCatImage();
-  }
-  async getCatFact() {
-    let result = await this.catSv.getCatFact();
-    this.catFact = result;
-    console.log(this.catFact);
+
   }
 
-  async getCatImage() {
-    let result = await this.catSv.getCatImage();
-    this.catImageURL = result;
-    console.log(this.catImageURL);
-  }
 }

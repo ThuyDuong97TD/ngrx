@@ -1,0 +1,20 @@
+*{
+    font-size: 30px;
+}
+.container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+button{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: none;
+    background-color: #f1f1f1;
+    font-size: 40px;
+    cursor: pointer;
+    outline: none;
+}

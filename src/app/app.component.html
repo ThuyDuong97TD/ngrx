@@ -1,3 +1,6 @@
+
+<router-outlet></router-outlet>
 <div class="editCat">
-  <app-cat-blog *ngFor="let cat of catArray"></app-cat-blog>
+  <app-cat-blog *ngFor="let cat of (cats$|async)?.cats " [cat]="cat"></app-cat-blog>
 </div>
+

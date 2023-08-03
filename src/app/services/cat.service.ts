@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CatFact } from '../models/cat-fact.model';
-import { MaxLengthValidator } from '@angular/forms';
-import { map } from 'rxjs';
+import { Cat, CatFact } from '../models/cat-fact.model';
+import { map, zip } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -50,5 +49,33 @@ export class CatService {
     });
 
     return promise;
+  }
+  getCats(limit: number) {
+    let zip$ = zip(this.getCatsfact(limit), this.getCatsImage(limit)).pipe(
+      map(([catFact, catImage]) => {
+        let facts = catFact['data'];
+        let images = catImage;
+        let result: Cat[] = [];
+        for (let i = 0; i < limit; i++) {
+          result.push({
+            catFact: facts[i],
+            catImage: images[i],
+          });
+        }
+        return result;
+      })
+    );
+    return zip$;
+  }
+
+  getCatsfact(limit: number) {
+    return this.httpClient.get<any>(
+      `https://catfact.ninja/facts?limit=${limit}`
+    );
+  }
+  getCatsImage(limit: number) {
+    return this.httpClient.get<any>(
+      `https://api.thecatapi.com/v1/images/search?limit=${limit}`
+    );
   }
 }

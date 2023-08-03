@@ -8,15 +8,18 @@ import { CatFactComponent } from './components/cat-fact/cat-fact.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { catReducer } from 'src/ngrx/reducers/cat.reducer';
+import { CatEffect } from 'src/ngrx/effects/cat.effect';
 
 @NgModule({
-  declarations: [AppComponent, CatBlogComponent, CatFactComponent],
+  declarations: [AppComponent, CatBlogComponent, CatFactComponent, NavbarComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    StoreModule.forRoot({}, {}),
-    EffectsModule.forRoot([]),
+    StoreModule.forRoot({cats :catReducer}, {}),
+    EffectsModule.forRoot([CatEffect]),
   ],
   providers: [],
   bootstrap: [AppComponent],

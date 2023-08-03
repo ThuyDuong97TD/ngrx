@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "projecta-bbc10": {
+      "hosting": {
+        "Project": [
+          "projecta-bbc10"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "projecta-bbc10"
+  }
+}

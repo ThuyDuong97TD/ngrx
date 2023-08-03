@@ -4,12 +4,13 @@
       class="card"
       href="https://codetheweb.blog/2017/10/06/html-syntax/"
       style="
-        --bg-img: url({{ catImageURL }});
+        --bg-img: url({{ cat.catImage.url }});
       "
     >
       <div>
         <p>
-          {{ catFact.fact }}
+          {{ cat.catFact.fact||"Cat Fact" }}
+           
         </p>
       </div>
     </a>
